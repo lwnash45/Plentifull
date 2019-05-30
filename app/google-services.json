@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1062714565992",
+    "firebase_url": "https://bigscontractingagency-8366a.firebaseio.com",
+    "project_id": "bigscontractingagency-8366a",
+    "storage_bucket": "bigscontractingagency-8366a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062714565992:android:c37a95214992f193",
+        "android_client_info": {
+          "package_name": "edu.washington.lwnash45.plentifull"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062714565992-8ftbt4hr7o49s7hm0h4ikgnlujbrpamg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa1Mu-Em0pOEwE1bUR_J0-TGlZ49N7H7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100306539568010221117",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
