@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.IgnoreExtraProperties
+
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,10 +26,10 @@ private const val ARG_PARAM2 = "param2"
 class SignUpFragment : Fragment() {
 
     lateinit var auth: FirebaseAuth
-    lateinit var db: DatabaseReference
+    lateinit var db: FirebaseFirestore
 
     companion object {
-        fun newInstance(auth: FirebaseAuth, db: DatabaseReference): SignUpFragment {
+        fun newInstance(auth: FirebaseAuth, db: FirebaseFirestore): SignUpFragment {
             val frag = SignUpFragment()
             frag.auth = auth
             frag.db = db
@@ -61,13 +61,19 @@ class SignUpFragment : Fragment() {
             val zipView = root.findViewById<EditText>(R.id.zip)
             auth.createUserWithEmailAndPassword(emailView.text.toString(), passwordView.text.toString()).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    val user = User(firstNameView.text.toString(),
-                        lastNameView.text.toString(),
-                        emailView.text.toString(),
-                        phoneNumberView.text.toString(),
-                        usernameView.text.toString())
-                    db.child("users").setValue(user)
-                    (activity as SignUpListener).onSignUpComplete()
+
+                    val user = hashMapOf(("first_name" to firstNameView.text.toString()),
+                        "last_name" to lastNameView.text.toString(),
+                        "email" to emailView.text.toString(),
+                        "phone_number" to phoneNumberView.text.toString(),
+                        "username" to usernameView.text.toString())
+
+                    db.collection("users").add(user).addOnSuccessListener {
+                        (activity as SignUpListener).onSignUpComplete()
+                    }.addOnFailureListener {
+                        Toast.makeText(activity, "New User Creation Failed", Toast.LENGTH_LONG)
+                    }
+
                 } else {
                     Toast.makeText(activity, "Sign Up Failed", Toast.LENGTH_LONG).show()
                 }
@@ -76,14 +82,14 @@ class SignUpFragment : Fragment() {
         return root
     }
 
-    @IgnoreExtraProperties
-    data class User(
-        val first_name: String,
-        val last_name: String,
-        val email: String,
-        val phone_number: String,
-        val username: String
-    )
+//    @IgnoreExtraProperties
+//    data class User(
+//        val first_name: String,
+//        val last_name: String,
+//        val email: String,
+//        val phone_number: String,
+//        val username: String
+//    )
 
 //    @IgnoreExtraProperties
 //    data class Status(var is_approved: Boolean) {
