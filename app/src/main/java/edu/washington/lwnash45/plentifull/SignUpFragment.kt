@@ -68,7 +68,7 @@ class SignUpFragment : Fragment() {
                         "phone_number" to phoneNumberView.text.toString(),
                         "username" to usernameView.text.toString())
 
-                    db.collection("users").add(user).addOnSuccessListener {
+                    db.collection("contractors").add(user).addOnSuccessListener {
                         (activity as SignUpListener).onSignUpComplete()
                     }.addOnFailureListener {
                         Toast.makeText(activity, "New User Creation Failed", Toast.LENGTH_LONG)

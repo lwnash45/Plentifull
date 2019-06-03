@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener, Si
 
         auth = FirebaseAuth.getInstance()
 
-        database = FirebaseFirestore.getInstance();
+        database = FirebaseFirestore.getInstance()
 
         val signInFragment = SignInFragment.newInstance(auth)
 
