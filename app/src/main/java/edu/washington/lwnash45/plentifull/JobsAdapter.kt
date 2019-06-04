@@ -22,7 +22,7 @@ import kotlin.collections.ArrayList
 
 class JobsAdapter(private val data: ArrayList<QueryDocumentSnapshot>, private val context: Context) : RecyclerView.Adapter<JobsAdapter.MyViewHolder>() {
 
-    class MyViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+    class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val titletView = view.findViewById<TextView>(R.id.jobTitle)
         val payView = view.findViewById<TextView>(R.id.pay)
         val cityView = view.findViewById<TextView>(R.id.city)
@@ -39,11 +39,11 @@ class JobsAdapter(private val data: ArrayList<QueryDocumentSnapshot>, private va
         var dataPosition = data[position].data
 
         holder.titletView.text = dataPosition["job_header"].toString()
-        holder.payView.text = "$" + dataPosition["hourly_wage_to_admin"].toString()
-        holder.cityView.text = dataPosition["location"].toString()
+        holder.payView.text = "$" + dataPosition["hourly_wage_to_admin"].toString() + " /Hr"
+        holder.cityView.text = "Location: " + dataPosition["location"].toString()
 
         var date = dataPosition["from"] as Timestamp
-        holder.dateView.text = date.toDate().toString()
+        holder.dateView.text = "Date: " + date.toDate().toString()
 
         holder.buttonView.setOnClickListener {
             val intent = Intent(this.context, AddJobActivity::class.java)

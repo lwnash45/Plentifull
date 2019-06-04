@@ -17,31 +17,29 @@
                     android:text="Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:id="@+id/jobTitle"/>
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/jobTitle" android:textSize="18sp"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
                     android:id="@+id/pay" android:layout_weight="1"
-                    android:text="pay"/>
+                    android:text="pay" android:textSize="18sp"/>
         </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
+        <TextView
+                android:text="City"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:gravity="center">
-            <TextView
-                    android:text="City"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:id="@+id/city" android:layout_weight="1"/>
-            <TextView
-                    android:text="date"
-                    android:layout_width="wrap_content"
-                    android:padding="8dp"
-                    android:layout_height="wrap_content" android:id="@+id/date" android:layout_weight="1"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/city" android:layout_weight="1"/>
+        <TextView
+                android:text="date"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:layout_height="wrap_content" android:id="@+id/date" android:layout_weight="1"/>
         <Button
                 android:text="Add Job"
                 android:layout_width="wrap_content"

@@ -53,8 +53,9 @@ class SignInFragment : Fragment() {
             } else {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        //val intent = Intent(root.context, FragmentedActivity::class.java)
-                        startActivity(Intent(activity, FragmentedActivity::class.java))
+                        val intent = Intent(root.context, FragmentedActivity::class.java)
+                        intent.putExtra("TYPE", "NEW")
+                        startActivity(intent)
                     } else {
                         Toast.makeText(activity, "Incorrect Email or Password", Toast.LENGTH_LONG).show()
                     }
@@ -64,7 +65,7 @@ class SignInFragment : Fragment() {
         }
 
         root.findViewById<View>(R.id.signUpButton).setOnClickListener {
-            (activity as BeginSignUpListener).onSignUp()
+            startActivity(Intent(root.context, SignUpActivity::class.java))
         }
 
 

@@ -10,11 +10,12 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:gravity="center_horizontal" android:id="@+id/linearLayout">
         <TextView
                 android:text="Jobs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView3" android:gravity="center"/>
+                android:layout_height="wrap_content" android:id="@+id/jobTypeView" android:gravity="center"
+                android:autoText="false" android:textSize="24sp"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             <Button
                     android:text="New"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/newJob" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/newJobTab" android:layout_weight="1"/>
             <Button
                     android:text="Past"
                     android:layout_width="wrap_content"
@@ -36,4 +37,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/jobsList"/>
     </LinearLayout>
+    <Button
+            android:text="Sign Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/signOut"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="5dp"
+            android:textSize="14sp"/>
 </android.support.constraint.ConstraintLayout>

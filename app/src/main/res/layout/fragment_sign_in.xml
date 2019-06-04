@@ -11,7 +11,8 @@
         <TextView
                 android:text="Plentifull"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView" android:gravity="center"/>
+                android:layout_height="wrap_content" android:id="@+id/textView" android:gravity="center"
+                android:textSize="36sp"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,15 +28,20 @@
         <Button
                 android:text="Sign In"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/sign_in_button"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:id="@+id/sign_in_button"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp">
             <TextView
                     android:text="Don't have account?"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_weight="1"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:id="@+id/textView2" android:layout_weight="1"/>
             <Button
                     android:text="Sign Up"
                     android:layout_width="wrap_content"

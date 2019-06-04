@@ -25,35 +25,40 @@ class AddJobActivity : AppCompatActivity() {
 
         val id = intent.getStringExtra("ID")!!
 
-        var collection = db.collection("jobs")
-        collection.document(id!!).get().addOnSuccessListener {
-            Log.d("Yo", "please work")
+        db.collection("jobs").document(id!!).get().addOnSuccessListener {
+
             var titleView = findViewById<TextView>(R.id.jobTitle)
             var payView = findViewById<TextView>(R.id.pay)
             var locationView = findViewById<TextView>(R.id.city)
             var dateView = findViewById<TextView>(R.id.date)
+
             titleView.text = it["job_header"].toString()
-            payView.text = it["houry_wage_to_admin"].toString()
+            payView.text = it["hourly_wage_to_admin"].toString()
             locationView.text = it["location"].toString()
+
             var date = it["from"] as Timestamp
             dateView.text = date.toDate().toString()
-        }
-        val addJobBtn = findViewById<Button>(R.id.addJob)
-        addJobBtn.setOnClickListener {
-            val currentUser = auth.currentUser!!
-            val userEmail = currentUser.email.toString()
-            var usersJobs: HashMap<String, ArrayList<String>> = hashMapOf()
-            db.collection("contractors-jobs").document(userEmail).get().addOnSuccessListener {
-                Log.d("Yo1", it.toString())
-                if (it["jobs"] == null) {
-                    usersJobs["jobs"] = arrayListOf(id.toString())
-                } else {
-                    var jobsArray = it["jobs"]!! as ArrayList<String>
-                    jobsArray.add(id)
-                    usersJobs[userEmail] = jobsArray
-                }
-                db.collection("contractors-jobs").document(currentUser.email.toString()).set(usersJobs).addOnCompleteListener {
-                    startActivity(Intent(this, FragmentedActivity::class.java))
+
+            val addJobBtn = findViewById<Button>(R.id.addJob)
+            addJobBtn.setOnClickListener {
+                val currentUser = auth.currentUser!!
+                val userEmail = currentUser.email.toString()
+                var usersJobs: HashMap<String, ArrayList<String>> = hashMapOf()
+
+                db.collection("contractors-jobs").document(userEmail).get().addOnSuccessListener {
+                    if (it["jobs"] == null) {
+                        usersJobs["jobs"] = arrayListOf(id.toString())
+                    } else {
+                        var jobsArray = it["jobs"]!! as ArrayList<String>
+                        jobsArray.add(id)
+                        usersJobs["jobs"] = jobsArray
+                    }
+
+                    db.collection("contractors-jobs").document(currentUser.email.toString()).set(usersJobs).addOnCompleteListener {
+                        val intent = Intent(this, FragmentedActivity::class.java)
+                        intent.putExtra("TYPE", "UPCOMING")
+                        startActivity(intent)
+                    }
                 }
             }
         }
