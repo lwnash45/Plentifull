@@ -14,11 +14,12 @@ import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
 import kotlin.collections.ArrayList
 import android.content.Context
+import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class FragmentedActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var snapshot: QuerySnapshot
-    private lateinit var jobsList: ArrayList<Map<String, Any>>
+    private lateinit var jobsList: ArrayList<QueryDocumentSnapshot>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,18 +39,18 @@ class FragmentedActivity : AppCompatActivity() {
         }
     }
 
-    inner class AsyncDataFetch(private val context: Context): AsyncTask<QuerySnapshot, Int, ArrayList<Map<String, Any>>>() {
-        override fun doInBackground(vararg params: QuerySnapshot?): ArrayList<Map<String, Any>> {
-            var list : ArrayList<Map<String, Any>> = arrayListOf()
+    inner class AsyncDataFetch(private val context: Context): AsyncTask<QuerySnapshot, Int, ArrayList<QueryDocumentSnapshot>>() {
+        override fun doInBackground(vararg params: QuerySnapshot?): ArrayList<QueryDocumentSnapshot> {
+            var list : ArrayList<QueryDocumentSnapshot> = arrayListOf()
             var result: QuerySnapshot? = params[0]
             for (doc in result!!) {
-                list.add(doc.data)
+                list.add(doc)
             }
             return list
         }
 
-        override fun onPostExecute(result: ArrayList<Map<String, Any>>?) {
-            var jobsAdapter = JobsAdapter(result!!)
+        override fun onPostExecute(result: ArrayList<QueryDocumentSnapshot>?) {
+            var jobsAdapter = JobsAdapter(result!!, this.context)
             var manager = LinearLayoutManager(context)
             findViewById<RecyclerView>(R.id.jobsList).apply {
                 setHasFixedSize(true)
