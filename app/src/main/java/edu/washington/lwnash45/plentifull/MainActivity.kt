@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener, Si
         supportFragmentManager.beginTransaction().replace(R.id.fragmentFrame, SignInFragment.newInstance(auth), "SIGN_IN_FRAG").commit()
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            startActivity(Intent(this, FragmentedActivity::class.java))
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, FragmentedActivity::class.java))
+        }
+    }
 }
