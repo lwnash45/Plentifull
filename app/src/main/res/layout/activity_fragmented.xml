@@ -18,18 +18,22 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
             <Button
-                    android:text="Button"
+                    android:text="Upcoming"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/upcoming" android:layout_weight="1"/>
             <Button
-                    android:text="Button"
+                    android:text="New"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button2" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/newJob" android:layout_weight="1"/>
             <Button
+                    android:text="Past"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button3" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/past" android:layout_weight="1"/>
         </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/jobsList"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
