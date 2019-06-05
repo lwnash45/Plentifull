@@ -33,11 +33,11 @@ class AddJobActivity : AppCompatActivity() {
             var dateView = findViewById<TextView>(R.id.date)
 
             titleView.text = it["job_header"].toString()
-            payView.text = it["hourly_wage_to_admin"].toString()
-            locationView.text = it["location"].toString()
+            payView.text = "$" + it["hourly_wage_to_admin"].toString() + " /Hr"
+            locationView.text = "Location: " + it["location"].toString()
 
             var date = it["from"] as Timestamp
-            dateView.text = date.toDate().toString()
+            dateView.text = "Date: " + date.toDate().toString()
 
             val addJobBtn = findViewById<Button>(R.id.addJob)
             addJobBtn.setOnClickListener {

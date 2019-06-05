@@ -20,7 +20,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class JobsAdapter(private val data: ArrayList<QueryDocumentSnapshot>, private val context: Context) : RecyclerView.Adapter<JobsAdapter.MyViewHolder>() {
+class JobsAdapter(private val data: ArrayList<QueryDocumentSnapshot>, private val context: Context, private val type: String):
+    RecyclerView.Adapter<JobsAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val titletView = view.findViewById<TextView>(R.id.jobTitle)
@@ -45,10 +46,18 @@ class JobsAdapter(private val data: ArrayList<QueryDocumentSnapshot>, private va
         var date = dataPosition["from"] as Timestamp
         holder.dateView.text = "Date: " + date.toDate().toString()
 
-        holder.buttonView.setOnClickListener {
-            val intent = Intent(this.context, AddJobActivity::class.java)
-            intent.putExtra("ID", data[position].id)
-            startActivity(this.context, intent, null)
+
+        when (this.type) {
+            "NEW" -> {
+                holder.buttonView.setOnClickListener {
+                    val intent = Intent(this.context, AddJobActivity::class.java)
+                    intent.putExtra("ID", data[position].id)
+                    startActivity(this.context, intent, null)
+                }
+            }
+            else -> {
+                holder.buttonView.visibility = View.INVISIBLE
+            }
         }
 
     }

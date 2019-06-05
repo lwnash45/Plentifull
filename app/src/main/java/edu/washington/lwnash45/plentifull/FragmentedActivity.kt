@@ -120,7 +120,7 @@ class FragmentedActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: ArrayList<QueryDocumentSnapshot>?) {
-            var jobsAdapter = JobsAdapter(result!!, this.context)
+            var jobsAdapter = JobsAdapter(result!!, this.context, this.type)
             var manager = LinearLayoutManager(context)
             findViewById<RecyclerView>(R.id.jobsList).apply {
                 setHasFixedSize(true)
