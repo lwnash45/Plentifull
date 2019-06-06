@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener, SignUpFragment.SignUpListener {
+class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener {
 
     lateinit var auth: FirebaseAuth
 
@@ -32,10 +32,6 @@ class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener, Si
     override fun onSignUp() {
         //val signUpFragment
         supportFragmentManager.beginTransaction().replace(R.id.fragmentFrame, SignUpFragment.newInstance(auth, database), "SIGN_UP_FRAG").commit()
-    }
-
-    override fun onSignUpComplete() {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentFrame, SignInFragment.newInstance(auth), "SIGN_IN_FRAG").commit()
     }
 
     override fun onStart() {
