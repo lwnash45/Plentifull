@@ -60,6 +60,5 @@ class AddJobActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }
