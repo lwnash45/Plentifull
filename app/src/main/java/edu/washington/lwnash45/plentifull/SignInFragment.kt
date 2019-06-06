@@ -1,11 +1,15 @@
 package edu.washington.lwnash45.plentifull
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,12 +23,53 @@ private const val ARG_PARAM2 = "param2"
  */
 class SignInFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    lateinit var auth: FirebaseAuth
+
+    companion object {
+        fun newInstance(auth: FirebaseAuth): SignInFragment {
+            val frag = SignInFragment()
+            frag.auth = auth
+            return frag
+        }
+    }
+
+    interface BeginSignUpListener {
+        fun onSignUp()
+    }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_sign_in, container, false)
+
+        root.findViewById<View>(R.id.sign_in_button).setOnClickListener {
+            val emailView = root.findViewById<TextView>(R.id.email)
+            val email = emailView.text.toString()
+            val passwordView = root.findViewById<TextView>(R.id.passwordConf)
+            val password = passwordView.text.toString()
+            if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+                Toast.makeText(activity, "Must Enter Email and Password", Toast.LENGTH_LONG).show()
+            } else {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val intent = Intent(root.context, JobsActivity::class.java)
+                        intent.putExtra("TYPE", "NEW")
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(activity, "Incorrect Email or Password", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+
+        }
+
+        root.findViewById<View>(R.id.signUpButton).setOnClickListener {
+            startActivity(Intent(root.context, SignUpActivity::class.java))
+        }
+
+
+        return root
     }
 
 

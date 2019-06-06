@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1062714565992-mg14qt4ftc2s9kd7h6c18iplvo6724ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.washington.lwnash45.plentifull",
+            "certificate_hash": "45b6a39ee9e62b81c8df2d8086c7087f24105895"
+          }
+        },
+        {
           "client_id": "1062714565992-8ftbt4hr7o49s7hm0h4ikgnlujbrpamg.apps.googleusercontent.com",
           "client_type": 3
         }

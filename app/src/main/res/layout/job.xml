@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:gravity="center">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:gravity="center">
+            <TextView
+                    android:text="Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/jobTitle" android:textSize="18sp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/pay" android:layout_weight="1"
+                    android:text="pay" android:textSize="18sp"/>
+        </LinearLayout>
+        <TextView
+                android:text="City"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/city" android:layout_weight="1"/>
+        <TextView
+                android:text="date"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:layout_height="wrap_content" android:id="@+id/date" android:layout_weight="1"/>
+        <Button
+                android:text="Add Job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/addJob"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
