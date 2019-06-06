@@ -3,13 +3,11 @@ package edu.washington.lwnash45.plentifull
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.w3c.dom.Text
 
 class AddJobActivity : AppCompatActivity() {
 
@@ -55,7 +53,7 @@ class AddJobActivity : AppCompatActivity() {
                     }
 
                     db.collection("contractors-jobs").document(currentUser.email.toString()).set(usersJobs).addOnCompleteListener {
-                        val intent = Intent(this, FragmentedActivity::class.java)
+                        val intent = Intent(this, JobsActivity::class.java)
                         intent.putExtra("TYPE", "UPCOMING")
                         startActivity(intent)
                     }

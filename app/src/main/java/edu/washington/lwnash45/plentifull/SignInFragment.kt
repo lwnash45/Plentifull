@@ -53,7 +53,7 @@ class SignInFragment : Fragment() {
             } else {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(root.context, FragmentedActivity::class.java)
+                        val intent = Intent(root.context, JobsActivity::class.java)
                         intent.putExtra("TYPE", "NEW")
                         startActivity(intent)
                     } else {

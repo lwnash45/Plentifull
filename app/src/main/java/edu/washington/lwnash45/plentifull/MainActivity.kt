@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener, Si
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            startActivity(Intent(this, FragmentedActivity::class.java))
+            startActivity(Intent(this, JobsActivity::class.java))
         }
     }
 }
