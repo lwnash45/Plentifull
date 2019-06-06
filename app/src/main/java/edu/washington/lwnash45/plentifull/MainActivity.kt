@@ -3,15 +3,17 @@ package edu.washington.lwnash45.plentifull
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener {
+class MainActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
-
     lateinit var database: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +23,32 @@ class MainActivity : AppCompatActivity(), SignInFragment.BeginSignUpListener {
         FirebaseApp.initializeApp(this)
 
         auth = FirebaseAuth.getInstance()
-
         database = FirebaseFirestore.getInstance()
 
-        val signInFragment = SignInFragment.newInstance(auth)
+        findViewById<View>(R.id.sign_in_button).setOnClickListener {
+            val emailView = findViewById<TextView>(R.id.email)
+            val email = emailView.text.toString()
+            val passwordView = findViewById<TextView>(R.id.passwordConf)
+            val password = passwordView.text.toString()
+            if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+                Toast.makeText(this, "Must Enter Email and Password", Toast.LENGTH_LONG).show()
+            } else {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val intent = Intent(this, JobsActivity::class.java)
+                        intent.putExtra("TYPE", "NEW")
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "Incorrect Email or Password", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentFrame, signInFragment, "SIGN_IN_FRAG").commit()
-    }
+        }
 
-    override fun onSignUp() {
-        //val signUpFragment
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentFrame, SignUpFragment.newInstance(auth, database), "SIGN_UP_FRAG").commit()
+        findViewById<View>(R.id.signUpButton).setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
 
     override fun onStart() {

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlin.collections.ArrayList
@@ -84,7 +83,7 @@ class JobsActivity : AppCompatActivity() {
                 task.execute(result)
             }
         }.addOnFailureListener {
-            Toast.makeText(this, "Fuck!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Trouble Loading Jobs!", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -96,7 +95,6 @@ class JobsActivity : AppCompatActivity() {
             var result: QuerySnapshot? = params[0]
 
             var jobsArray: ArrayList<String>? = this.data["jobs"] as ArrayList<String>?
-            Log.d("Yo", jobsArray.toString())
 
             val time = Timestamp.now().seconds
 
@@ -111,7 +109,6 @@ class JobsActivity : AppCompatActivity() {
                         list.add(doc)
                     }
                     else -> if (jobsArray === null || !jobsArray.contains(doc.id) && startTime.seconds > time) {
-                        Log.d("Yo", "please work")
                         list.add(doc)
                     }
                 }
