@@ -68,7 +68,7 @@ class SignUpActivity : AppCompatActivity() {
                     password.text.toString() -> CheckInputs(contractor, db,
                         emailView.text.toString(), emailConfView.text.toString(),
                         passwordView.text.toString(), auth).run()
-                    else -> Toast.makeText(this@SignUpActivity, "Password and Password Conf Do Not Match!", Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(this@SignUpActivity, "Password and Password Conf do not match!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -78,7 +78,7 @@ class SignUpActivity : AppCompatActivity() {
                             private val email: String, private val emailConf: String,
                             private val password: String, private val authenticate: FirebaseAuth): Runnable {
         override fun run() {
-            val toast = Toast.makeText(this@SignUpActivity, "All Fields Must Be Filled", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(this@SignUpActivity, "All fields must be filled", Toast.LENGTH_SHORT)
             for (node in this.con) {
                 when (node.key) {
                     "address" -> {
@@ -105,14 +105,14 @@ class SignUpActivity : AppCompatActivity() {
                         this.con["end_date"]
                         this.con["is_active"] = true
                         this.database.collection("contractors").add(this.con).addOnSuccessListener {
-                            Toast.makeText(this@SignUpActivity, "Successfully Made New Account!!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignUpActivity, "Successfully created new account!", Toast.LENGTH_LONG).show()
                             this.authenticate.signOut()
                             startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
                         }.addOnFailureListener {
-                            Toast.makeText(this@SignUpActivity, "New User DB Creation Failed", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignUpActivity, "New user DB creation failed", Toast.LENGTH_LONG).show()
                         }
                     }.addOnFailureListener {
-                        Toast.makeText(this@SignUpActivity, "Trouble Making Account, if password is at least 6 chararcters", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@SignUpActivity, "Trouble creating account, if password is at least 6 characters", Toast.LENGTH_LONG).show()
                     }
                 }
                 else -> {
